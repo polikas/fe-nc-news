@@ -1,10 +1,19 @@
-import './App.css'
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import HomeHeader from "./components/HomeHeader";
+import Navigation from "./components/Navigation";
+import Articles from "./components/Articles";
 
 function App() {
-
   return (
-    <h1>hello</h1>
-  )
+    <div>
+      <HomeHeader />
+      <Routes>
+        <Route path="/" element={<Navigation />} />
+        <Route path="/articles" element={<Articles />} />
+      </Routes>
+    </div>
+  );
 }
 
-export default App
+export default App;
