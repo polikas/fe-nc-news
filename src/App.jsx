@@ -4,6 +4,7 @@ import HomeHeader from "./components/HomeHeader";
 import Navigation from "./components/Navigation";
 import Articles from "./components/Articles";
 import Comments from "./components/Comments";
+import SingleArticle from "./components/SingleArticle";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigation />} />
         <Route path="/articles" element={<Articles />} />
-        <Route path="/articles/:article_id" element={<Articles />} />
+        <Route path="/articles/:article_id" element={<SingleArticle />} />
         <Route path="/articles/:article_id/comments" element={<Comments />} />
       </Routes>
     </div>
