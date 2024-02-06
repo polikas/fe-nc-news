@@ -1,13 +1,16 @@
 import axios from "axios";
 
-export const getArticles = (articleId) => {
-  let urlStr = "https://articles-service-api.onrender.com/api/articles";
+export const getArticles = () => {
+  const response = axios
+    .get("https://articles-service-api.onrender.com/api/articles")
+    .then((articles) => articles.data);
+  return response;
+};
 
-  if (articleId !== undefined) {
-    urlStr += `/${articleId}`;
-  }
-
-  const response = axios.get(urlStr).then((articles) => articles.data);
+export const getSingleArticle = (articleId) => {
+  const response = axios
+    .get(`https://articles-service-api.onrender.com/api/articles/${articleId}`)
+    .then((article) => article.data);
   return response;
 };
 
