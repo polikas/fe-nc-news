@@ -10,3 +10,12 @@ export const getArticles = (articleId) => {
   const response = axios.get(urlStr).then((articles) => articles.data);
   return response;
 };
+
+export const getCommentsByArticleId = (articleId) => {
+  const response = axios
+    .get(
+      `https://articles-service-api.onrender.com/api/articles/${articleId}/comments`
+    )
+    .then((comments) => comments.data);
+  return response;
+};

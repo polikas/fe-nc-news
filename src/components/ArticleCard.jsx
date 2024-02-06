@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const ArticleCard = ({ article, showBody }) => {
   return (
     <li key={article.article_id}>
-      <Card sx={{ minWidth: 275 }}>
+      <Card sx={{ minWidth: 275, bgcolor: "bisque", border: "2px solid black"}}>
         <CardContent>
           <Link to={`/articles/${article.article_id}`}>
             <Typography variant="h5" component="div">
@@ -26,7 +26,7 @@ const ArticleCard = ({ article, showBody }) => {
           )}
           <Typography color="text.secondary">Votes: {article.votes}</Typography>
           <Typography color="text.secondary">
-            Comment Count: {article.comment_count}
+            Comment Count: <Link to={`/articles/${article.article_id}/comments`}>{article.comment_count}</Link>
           </Typography>
           <Typography variant="body2">Created: {article.created_at}</Typography>
           <img
