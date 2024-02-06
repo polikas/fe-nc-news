@@ -5,12 +5,17 @@ import {
   CardContent,
   Typography,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-const ArticleCard = ({ article, showBody }) => {
+
+const ArticleCard = ({ article, showBody, handleVoteBtn }) => {
+
+
   return (
     <li key={article.article_id}>
-      <Card sx={{ minWidth: 275, bgcolor: "bisque", border: "2px solid black"}}>
+      <Card
+        sx={{ minWidth: 275, bgcolor: "bisque", border: "2px solid black" }}
+      >
         <CardContent>
           <Link to={`/articles/${article.article_id}`}>
             <Typography variant="h5" component="div">
@@ -26,7 +31,10 @@ const ArticleCard = ({ article, showBody }) => {
           )}
           <Typography color="text.secondary">Votes: {article.votes}</Typography>
           <Typography color="text.secondary">
-            Comment Count: <Link to={`/articles/${article.article_id}/comments`}>{article.comment_count}</Link>
+            Comment Count:{" "}
+            <Link to={`/articles/${article.article_id}/comments`}>
+              {article.comment_count}
+            </Link>
           </Typography>
           <Typography variant="body2">Created: {article.created_at}</Typography>
           <img
@@ -36,14 +44,16 @@ const ArticleCard = ({ article, showBody }) => {
             style={{ width: "75px", height: "75px" }}
           />
         </CardContent>
-        <CardActions>
-          <Button className="voteBtn" size="small">
-            Vote
-          </Button>
-          <Button className="commentBtn" size="small">
-            Comment
-          </Button>
-        </CardActions>
+        {showBody && (
+          <CardActions>
+            <Button className="voteBtn" size="small" onClick={handleVoteBtn}>
+              Vote
+            </Button>
+            <Button className="commentBtn" size="small">
+              Comment
+            </Button>
+          </CardActions>
+        )}
       </Card>
     </li>
   );
