@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import ArticleCard from "./ArticleCard";
 import { getSingleArticle } from "../api";
 import { useParams } from "react-router-dom";
+import { patchVotesByArticleId } from "../api";
 
-const Article = () => {
+const SingleArticle = () => {
   const [article, setArticle] = useState([]);
   const { article_id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
@@ -16,11 +17,29 @@ const Article = () => {
     });
   }, []);
 
+  const { votes } = article;
+
+  const handleVoteBtn = (event) => {
+    console.log(votes, "<<< VOTES");
+    patchVotesByArticleId(article_id, 1).then(() =>
+      setArticle((currentArticle) => {
+        return {...currentArticle, votes: currentArticle.votes + 1};
+      })
+    );
+  };
+
   if (isLoading) {
     return <p>Loading...</p>;
   }
 
-  return <ArticleCard article={article} showBody={true} />;
+  return (
+    <ArticleCard
+      article={article}
+      showBody={true}
+      setArticle={setArticle}
+      handleVoteBtn={handleVoteBtn}
+    />
+  );
 };
 
-export default Article;
+export default SingleArticle;

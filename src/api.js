@@ -22,3 +22,13 @@ export const getCommentsByArticleId = (articleId) => {
     .then((comments) => comments.data);
   return response;
 };
+
+export const patchVotesByArticleId = (articleId, newVote) => {
+  const response = axios
+    .patch(
+      `https://articles-service-api.onrender.com/api/articles/${articleId}`,
+      { votes: newVote }
+    )
+    .then((article) => article.data);
+  return response;
+};
