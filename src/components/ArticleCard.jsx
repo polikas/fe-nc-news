@@ -1,29 +1,31 @@
 import {
-    Button,
-    Card,
-    CardActions,
-    CardContent,
-    Typography,
-  } from "@mui/material";
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  Typography,
+} from "@mui/material";
+import { Link } from "react-router-dom";
 
-const ArticleCard = ({ article }) => {
+const ArticleCard = ({ article, showBody }) => {
   return (
     <li key={article.article_id}>
       <Card sx={{ minWidth: 275 }}>
         <CardContent>
+          <Link to={`/articles/${article.article_id}`}>
+            <Typography variant="h5" component="div">
+              Title: {article.title}
+            </Typography>
+          </Link>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             Author: {article.author}
           </Typography>
-          <Typography variant="h5" component="div">
-            Title: {article.title}
-          </Typography>
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            Topic: {article.topic}
-          </Typography>
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            Votes: {article.votes}
-          </Typography>
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
+          <Typography color="text.secondary">Topic: {article.topic}</Typography>
+          {showBody && (
+            <Typography color="text.secondary">Body: {article.body}</Typography>
+          )}
+          <Typography color="text.secondary">Votes: {article.votes}</Typography>
+          <Typography color="text.secondary">
             Comment Count: {article.comment_count}
           </Typography>
           <Typography variant="body2">Created: {article.created_at}</Typography>
