@@ -6,10 +6,15 @@ import {
   Typography,
 } from "@mui/material";
 import { Link, useParams } from "react-router-dom";
-
+import AddComment from "./AddComment";
+import { useState } from "react";
 
 const ArticleCard = ({ article, showBody, handleVoteBtn }) => {
+  const [showCommentBox, setCommentBox] = useState(false);
 
+  const handleCommentBtn = () => {
+    setCommentBox(true);
+  };
 
   return (
     <li key={article.article_id}>
@@ -46,10 +51,21 @@ const ArticleCard = ({ article, showBody, handleVoteBtn }) => {
         </CardContent>
         {showBody && (
           <CardActions>
+            {showCommentBox ? (
+              <AddComment
+                showCommentBox={showCommentBox}
+                setCommentBox={setCommentBox}
+                article={article}
+              />
+            ) : null}
             <Button className="voteBtn" size="small" onClick={handleVoteBtn}>
               Vote
             </Button>
-            <Button className="commentBtn" size="small">
+            <Button
+              className="commentBtn"
+              size="small"
+              onClick={handleCommentBtn}
+            >
               Comment
             </Button>
           </CardActions>

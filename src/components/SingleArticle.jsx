@@ -19,11 +19,10 @@ const SingleArticle = () => {
 
   const { votes } = article;
 
-  const handleVoteBtn = (event) => {
-    console.log(votes, "<<< VOTES");
+  const handleVoteBtn = () => {
     patchVotesByArticleId(article_id, 1).then(() =>
       setArticle((currentArticle) => {
-        return {...currentArticle, votes: currentArticle.votes + 1};
+        return { ...currentArticle, votes: currentArticle.votes + 1 };
       })
     );
   };

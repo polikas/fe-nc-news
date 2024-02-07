@@ -32,3 +32,16 @@ export const patchVotesByArticleId = (articleId, newVote) => {
     .then((article) => article.data);
   return response;
 };
+
+export const postComment = (articleId, authorName, newComment) => {
+  const response = axios
+    .post(
+      `https://articles-service-api.onrender.com/api/articles/${articleId}/comments`,
+      {
+        author: authorName,
+        body: newComment
+      }
+    )
+    .then((comment) => comment.data);
+  return response;
+};
