@@ -39,9 +39,16 @@ export const postComment = (articleId, authorName, newComment) => {
       `https://articles-service-api.onrender.com/api/articles/${articleId}/comments`,
       {
         author: authorName,
-        body: newComment
+        body: newComment,
       }
     )
     .then((comment) => comment.data);
+  return response;
+};
+
+export const deleteComment = (commentId) => {
+  const response = axios.delete(
+    `https://articles-service-api.onrender.com/api/comments/${commentId}`
+  ).then((comment) => comment.data)
   return response;
 };

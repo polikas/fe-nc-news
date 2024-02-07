@@ -11,7 +11,7 @@ const Comments = () => {
     getCommentsByArticleId(article_id).then((commentsData) =>
       setComments(commentsData.comments)
     );
-  }, []);
+  }, [comments]);
   return (
     <ol>
       {comments.map((comment) => (
