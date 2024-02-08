@@ -11,7 +11,9 @@ const Navigation = () => {
         <Link to="/articles">
           <Button>Articles</Button>
         </Link>
-        <Button>Topics</Button>
+        <Link to="/topics">
+          <Button>Topics</Button>
+        </Link>
         <Button>Change User</Button>
       </ButtonGroup>
     </nav>
