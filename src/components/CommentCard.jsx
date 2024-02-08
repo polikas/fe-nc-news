@@ -1,7 +1,7 @@
 import { Card, CardContent, Typography } from "@mui/material";
 import DeleteComment from "./DeleteComment";
 
-const CommentCard = ({ comment }) => {
+const CommentCard = ({ comment, selectedUser }) => {
   return (
     <li key={comment.comment_id}>
       <Card
@@ -17,7 +17,7 @@ const CommentCard = ({ comment }) => {
           <Typography color="text.secondary">Body: {comment.body}</Typography>
           <Typography color="text.secondary">Votes: {comment.votes}</Typography>
           <Typography variant="body2">Created: {comment.created_at}</Typography>
-          <DeleteComment comment={comment}/>
+          <DeleteComment comment={comment} />
         </CardContent>
       </Card>
     </li>
