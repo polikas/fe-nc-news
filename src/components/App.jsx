@@ -6,6 +6,7 @@ import Articles from "./Articles";
 import Comments from "./Comments";
 import SingleArticle from "./SingleArticle";
 import UserAccount from "./UserAccount";
+import TopicsList from "./TopicsList";
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
         <Route path="/articles" element={<Articles />} />
         <Route path="/articles/:article_id" element={<SingleArticle />} />
         <Route path="/articles/:article_id/comments" element={<Comments />} />
+        <Route path="/topics" element={<TopicsList />} />
+        <Route path="/articles/topic/:slug" element={<Articles />} />
       </Routes>
     </div>
   );

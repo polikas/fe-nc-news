@@ -2,14 +2,16 @@ import { useContext, useEffect, useState } from "react";
 import { ArticleContext } from "../contexts/Article";
 import { getArticles } from "../api";
 import ArticleCard from "./ArticleCard";
+import { useParams } from "react-router-dom";
 
 const Articles = () => {
   const { articles, setArticles } = useContext(ArticleContext);
   const [isLoading, setIsLoading] = useState(true);
+  const { slug } = useParams();
 
   useEffect(() => {
     setIsLoading(true);
-    getArticles().then((articlesData) => {
+    getArticles(slug).then((articlesData) => {
       setArticles(articlesData.articles);
       setIsLoading(false);
     });

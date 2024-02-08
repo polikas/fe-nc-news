@@ -1,9 +1,13 @@
 import axios from "axios";
 
-export const getArticles = () => {
-  const response = axios
-    .get("https://articles-service-api.onrender.com/api/articles")
-    .then((articles) => articles.data);
+export const getArticles = (topicName) => {
+  let url = `https://articles-service-api.onrender.com/api/articles`;
+
+  if (topicName !== undefined) {
+    url += `?topic=${topicName}`;
+  }
+
+  const response = axios.get(url).then((articles) => articles.data);
   return response;
 };
 
@@ -47,8 +51,17 @@ export const postComment = (articleId, authorName, newComment) => {
 };
 
 export const deleteComment = (commentId) => {
-  const response = axios.delete(
-    `https://articles-service-api.onrender.com/api/comments/${commentId}`
-  ).then((comment) => comment.data)
+  const response = axios
+    .delete(
+      `https://articles-service-api.onrender.com/api/comments/${commentId}`
+    )
+    .then((comment) => comment.data);
+  return response;
+};
+
+export const getTopics = () => {
+  const response = axios
+    .get("https://articles-service-api.onrender.com/api/topics")
+    .then((topics) => topics.data);
   return response;
 };
