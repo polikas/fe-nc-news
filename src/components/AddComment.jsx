@@ -1,19 +1,33 @@
-import { Alert, Button, TextField } from "@mui/material";
-import { useState } from "react";
+import { Alert, Button, Snackbar, TextField } from "@mui/material";
+import { useContext, useState } from "react";
 import { postComment } from "../api";
+import { UserContext } from "../contexts/User";
 
 const AddComment = ({ setCommentBox, article }) => {
   const [comment, setComment] = useState("");
-  
+  const [open, setOpen] = useState(false);
+  const { selectedUser } = useContext(UserContext);
+
   const { author, article_id, body } = article;
 
   const handleAddCommentBtn = () => {
     postComment(article_id, author, comment).then(() => {
       setComment((currentComment) => {
-        return { ...currentComment, body: currentComment.body };
+        return {
+          ...currentComment,
+          body: currentComment.body,
+        };
       });
     });
+    setOpen(true);
     setCommentBox(false);
+  };
+
+  const handleClose = (reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
   };
 
   return (
@@ -34,6 +48,13 @@ const AddComment = ({ setCommentBox, article }) => {
       >
         Add Comment
       </Button>
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        message={`Commented By ${selectedUser}`}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      />
     </div>
   );
 };
