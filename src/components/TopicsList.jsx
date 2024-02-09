@@ -4,12 +4,17 @@ import TopicCard from "./TopicCard";
 
 const TopicsList = () => {
   const [topics, setTopics] = useState([]);
-
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     getTopics().then((topicsData) => {
       setTopics(topicsData.topic);
+      setIsLoading(false);
     });
   }, []);
+
+  if (isLoading) {
+    return <p>is Loading...</p>;
+  }
 
   return (
     <ul>

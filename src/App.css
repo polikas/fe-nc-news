@@ -3,6 +3,10 @@ body {
   background-color: chocolate;
 }
 
+ul {
+  list-style-type: none;
+}
+
 /* classes */
 
 .voteBtn {

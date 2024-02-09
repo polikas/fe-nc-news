@@ -1,5 +1,9 @@
 import axios from "axios";
 
+const articlesApi = axios.create({
+  baseURL: "https://articles-service-api.onrender.com/api",
+});
+
 export const getArticles = (topicName) => {
   let url = `https://articles-service-api.onrender.com/api/articles`;
 
@@ -12,56 +16,44 @@ export const getArticles = (topicName) => {
 };
 
 export const getSingleArticle = (articleId) => {
-  const response = axios
-    .get(`https://articles-service-api.onrender.com/api/articles/${articleId}`)
+  const response = articlesApi
+    .get(`/articles/${articleId}`)
     .then((article) => article.data);
   return response;
 };
 
 export const getCommentsByArticleId = (articleId) => {
-  const response = axios
-    .get(
-      `https://articles-service-api.onrender.com/api/articles/${articleId}/comments`
-    )
+  const response = articlesApi
+    .get(`/articles/${articleId}/comments`)
     .then((comments) => comments.data);
   return response;
 };
 
 export const patchVotesByArticleId = (articleId, newVote) => {
-  const response = axios
-    .patch(
-      `https://articles-service-api.onrender.com/api/articles/${articleId}`,
-      { votes: newVote }
-    )
+  const response = articlesApi
+    .patch(`/articles/${articleId}`, { votes: newVote })
     .then((article) => article.data);
   return response;
 };
 
 export const postComment = (articleId, authorName, newComment) => {
-  const response = axios
-    .post(
-      `https://articles-service-api.onrender.com/api/articles/${articleId}/comments`,
-      {
-        author: authorName,
-        body: newComment,
-      }
-    )
+  const response = articlesApi
+    .post(`/articles/${articleId}/comments`, {
+      author: authorName,
+      body: newComment,
+    })
     .then((comment) => comment.data);
   return response;
 };
 
 export const deleteComment = (commentId) => {
-  const response = axios
-    .delete(
-      `https://articles-service-api.onrender.com/api/comments/${commentId}`
-    )
+  const response = articlesApi
+    .delete(`/comments/${commentId}`)
     .then((comment) => comment.data);
   return response;
 };
 
 export const getTopics = () => {
-  const response = axios
-    .get("https://articles-service-api.onrender.com/api/topics")
-    .then((topics) => topics.data);
+  const response = articlesApi.get("/topics").then((topics) => topics.data);
   return response;
 };
