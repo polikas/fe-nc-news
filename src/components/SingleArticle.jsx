@@ -32,12 +32,14 @@ const SingleArticle = () => {
   }
 
   return (
-    <ArticleCard
-      article={article}
-      showBody={true}
-      setArticle={setArticle}
-      handleVoteBtn={handleVoteBtn}
-    />
+    <ul>
+      <ArticleCard
+        article={article}
+        showBody={true}
+        setArticle={setArticle}
+        handleVoteBtn={handleVoteBtn}
+      />
+    </ul>
   );
 };
 
