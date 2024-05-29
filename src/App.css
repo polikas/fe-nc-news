@@ -7,6 +7,16 @@ ul {
   list-style-type: none;
 }
 
+.content-container {
+  min-height: calc(auto - 34px);
+}
+
+.footer--pin {
+  position: relative;
+  left: 0;
+  bottom: 0;
+}
+
 /* classes */
 
 .voteBtn {
